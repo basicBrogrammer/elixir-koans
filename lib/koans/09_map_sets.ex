@@ -6,13 +6,13 @@ defmodule MapSets do
   @set MapSet.new([1, 2, 3, 4, 5])
 
   koan "I am very similar to a list" do
-    assert Enum.fetch(@set, 0) == {:ok, ___}
+    assert Enum.fetch(@set, 0) == {:ok, 1}
   end
 
   koan "However, I do not allow duplication" do
     new_set = MapSet.new([1, 1, 2, 3, 3, 3])
 
-    assert MapSet.size(new_set) == ___
+    assert MapSet.size(new_set) == 3
   end
 
   def sorted?(set) do
@@ -23,14 +23,14 @@ defmodule MapSets do
 
   koan "You cannot depend on my order" do
     new_set = MapSet.new(1..33)
-    assert sorted?(new_set) == ___
+    assert sorted?(new_set) == false
 
     # Note: The number "33" is actually special here. Erlang uses a different
     # implementation for maps after 32 elements which does not maintain order.
     # http://stackoverflow.com/a/40408469
 
     # What do you think this answer to this assertion is?
-    assert sorted?(@set) == ___
+    assert sorted?(@set) == true
   end
 
   koan "Does this value exist in the map set?" do
